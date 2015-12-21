@@ -67,6 +67,10 @@
               <wsdlOptions>
                 <wsdlOption>
                   <wsdl>src/main/wsdl/HelloWorld.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-fe</extraarg>
+                    <extraarg>jaxws21</extraarg>
+                  </extraargs>
                 </wsdlOption>
               </wsdlOptions>
             </configuration>

@@ -1,3 +1,24 @@
+The solution / workaround
+=========================
+
+For me it looks like that the cxf-codegen-plugin still uses the Java 7 JDK to generate the code for a service. If you look at the genereted source of the Class HelloWorldService.java you can see that it uses a 3 parameter constructor of the super class. This construtor is available in the Java 7 rt.jar not in the Java 6 rt.jar.
+
+The different between Java 6 & 7 is that Java 7 supports JAX-WS 2.2 and Java 6 only 2.1 and it looks like the constructor is only available in JAX-WS 2.2.
+
+I added the following extraargs to the cxf-codegen-plugin to build JAX-WS 2.1 compatible code
+
+```xml
+<extraargs>
+  <extraarg>-fe</extraarg>
+  <extraarg>jaxws21</extraarg>
+</extraargs>
+```
+
+This will fix the compile problem.
+
+For me it is just a workaround and no solution because the plugin will still generate with Java 7. But it is workaround because the code is now compatible.
+
+
 CXF codegen plugin is not toolchains aware
 ==========================================
 
